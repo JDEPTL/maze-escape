@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Escape</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="app-shell">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">A SMALL MACHINE LEARNING GAME</p>
+                <h1>MAZE <span>ESCAPE</span></h1>
+            </div>
+            <div class="status-pill">
+                <span class="live-dot"></span> AI ENEMY ACTIVE
+            </div>
+        </header>
+
+        <section class="game-card">
+            <div class="game-topline">
+                <span>LEVEL 01</span>
+                <span>FIND THE KEY. REACH THE EXIT.</span>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat">
+                    <span>SCORE</span>
+                    <strong id="score">000</strong>
+                </div>
+                <div class="stat">
+                    <span>TIME</span>
+                    <strong id="time">00:00</strong>
+                </div>
+                <div class="stat">
+                    <span>MOVES</span>
+                    <strong id="moves">0</strong>
+                </div>
+                <div class="stat">
+                    <span>KEY</span>
+                    <strong id="key-status" class="warning">MISSING</strong>
+                </div>
+            </div>
+
+            <div class="canvas-wrap">
+                <canvas id="game" width="720" height="560"
+                        aria-label="Maze Escape game"></canvas>
+
+                <div id="overlay" class="overlay hidden">
+                    <div class="overlay-box">
+                        <p class="eyebrow">MAZE ESCAPE</p>
+                        <h2 id="overlay-title">YOU ESCAPED!</h2>
+                        <p id="overlay-text">Nice run.</p>
+                        <button id="overlay-restart">PLAY AGAIN</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-footer">
+                <div>
+                    <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+                    <span>or arrow keys to move</span>
+                </div>
+                <button id="restart" class="secondary-btn">↻ Restart</button>
+            </div>
+        </section>
+
+        <section class="bottom-status">
+            <div class="status-item">
+                <span class="status-icon red">◆</span>
+                <div>
+                    <strong>ENEMY</strong>
+                    <small id="enemy-status">Searching for you...</small>
+                </div>
+            </div>
+
+            <div class="status-item">
+                <span class="status-icon purple">✳</span>
+                <div>
+                    <strong>AI PLAY STYLE · KNN</strong>
+                    <small id="behavior">Collecting data...</small>
+                </div>
+            </div>
+
+            <p id="behavior-description" class="behavior-description">
+                Move around the maze to let the KNN model classify your playing style.
+            </p>
+        </section>
+
+        <!-- Required by game.js; kept hidden to preserve compatibility. -->
+        <div class="hidden-data" aria-hidden="true">
+            <span id="danger-meter"></span>
+            <span id="distance-feature"></span>
+            <span id="pace-feature"></span>
+            <span id="still-feature"></span>
+            <span id="behavior-symbol"></span>
+        </div>
+
+        <footer class="page-footer">
+            MAZE ESCAPE <span>•</span>
+            JavaScript · BFS Pathfinding · K-Nearest Neighbors
+        </footer>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='game.js') }}"></script>
+</body>
+</html>
